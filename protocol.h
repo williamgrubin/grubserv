@@ -150,6 +150,7 @@ class character {
 			player_description = (char *)malloc(description_length);
 			strncpy(player_description, pd, description_length);
 		}
+
 		bool receive(int cfd) {
 			if(48 != recv(cfd, this, 48, MSG_WAITALL)) { return false; }
 			reserved = (reserved == 0) ? reserved : 0;
@@ -165,17 +166,21 @@ class character {
 			gold_count = (gold_count == 50) ? gold_count : 50;
 			current_room = (current_room == 0) ? current_room : 0;
 			player_description = (char *)malloc(description_length);
+
 			if(description_length != recv(cfd, player_description, description_length, MSG_WAITALL)) {
 				printf("Failed to receive() CHARACTER description from descriptor %d.\n", cfd);
 				return false;
 			}
+
 			return true;
 		}
+
 		bool send(int cfd) {
 			if(48 != write(cfd, this, 48)) { return false; }
 			if(description_length != write(cfd, player_description, description_length)) { return false; }
 			return true;
 		}
+		
 		~character() { if(player_description) { free(player_description); } }
 }__attribute__((packed));
 
