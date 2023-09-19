@@ -743,10 +743,10 @@ int main(int argc, char **argv) {
 
 	storeObjects();
 
-	uint16_t lp = argv[1];
+	uint16_t lp = 5020;
 
 	if(argc > 1) {
-		lp = atoi(argv[1]);
+		lp = stoi(argv[1]);
 
 		if(lp < 1) {
 			printf("Invalid port entered: %s.\n", argv[1]);
