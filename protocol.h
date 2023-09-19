@@ -1,7 +1,7 @@
-#include<cstring>
-#include<cmath>
-#include<vector>
-#include<map>
+#include <cstring>
+#include <cmath>
+#include <vector>
+#include <map>
 using namespace std;
 
 class client {
